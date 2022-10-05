@@ -61,17 +61,17 @@ class SplashScreenView extends StatefulWidget {
   String? _backgroundImage = "";
   SplashScreenView(
       {required Widget? navigateRoute,
-        String? backgroundImage,
-        String? imageSrc,
-        int? duration,
-        int? imageSize,
-        TextStyle? textStyle,
-        int? speed,
-        PageRouteTransition? pageRouteTransition,
-        List<Color>? colors,
-        TextType? textType,
-        Color? backgroundColor,
-        String? text}) {
+      String? backgroundImage,
+      String? imageSrc,
+      int? duration,
+      int? imageSize,
+      TextStyle? textStyle,
+      int? speed,
+      PageRouteTransition? pageRouteTransition,
+      List<Color>? colors,
+      TextType? textType,
+      Color? backgroundColor,
+      String? text}) {
     _imageSrc = imageSrc;
     _widget = navigateRoute;
     _speed = speed;
@@ -159,11 +159,13 @@ class _SplashScreenViewState extends State<SplashScreenView>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration:  BoxDecoration(
-          image: widget._backgroundColor!=null? DecorationImage(
-            image: AssetImage(widget._backgroundColor),
-            fit: BoxFit.cover,
-          ): null,
+        decoration: BoxDecoration(
+          image: widget._backgroundImage != null
+              ? DecorationImage(
+                  image: AssetImage(widget._backgroundImage!),
+                  fit: BoxFit.cover,
+                )
+              : null,
         ),
         child: FadeTransition(
           opacity: _animation!,
@@ -173,18 +175,18 @@ class _SplashScreenViewState extends State<SplashScreenView>
             children: <Widget>[
               (widget._imageSrc != null && widget._imageSrc!.isNotEmpty)
                   ? (widget.isNetworkImage)
-                  ? Image.network(
-                widget._imageSrc!,
-                height: (widget._logoSize != null)
-                    ? widget._logoSize!.toDouble()
-                    : 150,
-              )
-                  : Image.asset(
-                widget._imageSrc!,
-                height: (widget._logoSize != null)
-                    ? widget._logoSize!.toDouble()
-                    : 150,
-              )
+                      ? Image.network(
+                          widget._imageSrc!,
+                          height: (widget._logoSize != null)
+                              ? widget._logoSize!.toDouble()
+                              : 150,
+                        )
+                      : Image.asset(
+                          widget._imageSrc!,
+                          height: (widget._logoSize != null)
+                              ? widget._logoSize!.toDouble()
+                              : 150,
+                        )
                   : SizedBox(),
               Padding(
                 padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
@@ -211,11 +213,11 @@ class _SplashScreenViewState extends State<SplashScreenView>
             colors: (widget._colors != null)
                 ? widget._colors!
                 : [
-              Colors.blue,
-              Colors.black,
-              Colors.blue,
-              Colors.black,
-            ],
+                    Colors.blue,
+                    Colors.black,
+                    Colors.blue,
+                    Colors.black,
+                  ],
           );
         case TextType.NormalText:
           return Text(
